@@ -8,86 +8,85 @@ import {
   PainelContainer,
   MainCoffeContainer,
 } from "./styles";
-import { InputForm } from "../../components/InputForm";
 import { ButtonPag } from "../../components/ButtonPag";
-
 import cc from "../../assets/buttonImgs/cartaoCredito.svg";
 import cd from "../../assets/buttonImgs/cartaoDebito.svg";
 import money from "../../assets/buttonImgs/dinheiro.svg";
 import { CoffeeCardMine } from "../../components/CoffeeCardMine";
-import { createContext, useContext, useState } from "react";
+import {  createContext, useContext } from "react";
 import { CoffeeContext } from "../../components/CoffeeCard";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as zod from "zod";
+import InputForm from "../../components/InputForm";
+import {  useNavigate } from "react-router-dom";
+import { FormContext } from "../../contexts/FormContext";
 
-// interface FormData {
+
+// export type FormData = {
 //   cep: string;
 //   rua: string;
 //   numero: string;
 //   complemento: string;
 //   bairro: string;
-//   city: string;
+//   cidade: string;
 //   uf: string;
-// }
+// };
 
-export const FormContext = createContext({} as FormData);
+
 //validação dos formularios
 const confirmeDeliveryFormValidation = zod.object({
-  cep: zod.string().min(8, "Informe o Cep"),
-  rua: zod.string().min(5, "Informe a Rua"),
-  numero: zod.string().min(1, "Informe o Numero"),
-  complemento: zod.string().min(2, "Informe o Complemento"),
-  bairro: zod.string().min(2, "Informe o Bairro"),
-  cidade: zod.string().min(2, "Informe a Cidade"),
-  uf: zod.string().min(2, "Informe o Estado"),
+  cep: zod.number().min(8, "Inseria seu cep"),
+  rua: zod.string().min(1,"Iinsira sua Rua"),
+  numero: zod.string().min(1,"Iinsira o Numero"),
+  complemento: zod.string().min(1,"Iinsira Complemento"),
+  bairro: zod.string().min(1,"Iinsira sua Bairro"),
+  cidade: zod.string().min(1,"Iinsira sua Cidade"),
+  uf: zod.string().min(1,"Iinsira seu Estado"),
 });
-type FormData = zod.infer<typeof confirmeDeliveryFormValidation>;
+export type FormData = zod.infer<typeof confirmeDeliveryFormValidation>;
 
 export function Checkout() {
-  const { register, handleSubmit, formState } = useForm<FormData>({
-    //configuração devalidação de formulario
+  const navigate = useNavigate();
+
+  const { cartItems, setCartItems } = useContext(CoffeeContext);
+  const { handleUpdateAddressData} = useContext(FormContext)
+ 
+
+  const totalItens = cartItems.reduce((total, item) => {
+    return total + parseFloat(item.price) * item.quantity;
+  }, 0);
+  
+
+  const { register, handleSubmit } = useForm<FormData>({
+    //configuração da validação de formulario
     resolver: zodResolver(confirmeDeliveryFormValidation),
     defaultValues: {
+      cep: 0,
       bairro: "",
-      cep: "",
       cidade: "",
       complemento: "",
       numero: "",
       rua: "",
       uf: "",
     },
-  });
-  // console.log(formState.errors);
-
-  const { cartItems, setCartItems } = useContext(CoffeeContext);
-  const [formData, setFormData] = useState<FormData>({
-    cep: "",
-    rua: "",
-    numero: "",
-    complemento: "",
-    bairro: "",
-    cidade: "",
-    uf: "",
-  });
-
-  const totalItens = cartItems.reduce((total, item) => {
-    return total + parseFloat(item.price) * item.quantity;
-  }, 0);
-
+  });   
+ 
   const totalEntrega = 3.5; // Valor fixo da entrega
   const totalGeral = totalItens + totalEntrega;
 
   const handleConfirmPedido = (data: FormData) => {
     // console.log(formData);
-    console.log(data);
-    setFormData(formData);
+    handleUpdateAddressData(data)    
     setCartItems([]);
+    navigate("/success");
   };
+  
   return (
-    <FormContext.Provider value={formData}>
-      <>
+
+
+         <>
         <PainelContainer>
           <CheckoutContainer>
             <DeliveryInformationContainer>
@@ -106,7 +105,7 @@ export function Checkout() {
                       <p>Informe o endereço onde deseja receber seu pedido</p>
                       <div>
                         <InputForm
-                          id="cep"
+                          // id="cep"
                           type="number"
                           placeholder="CEP"
                           {...register("cep", { valueAsNumber: true })}
@@ -115,7 +114,7 @@ export function Checkout() {
                       </div>
                       <div>
                         <InputForm
-                          id="rua"
+                          // id="rua"
                           type="text"
                           placeholder="Rua"
                           {...register("rua")}
@@ -124,13 +123,13 @@ export function Checkout() {
                       </div>
                       <div>
                         <InputForm
-                          id="numero"
+                          // id="numero"
                           type="text"
                           placeholder="Número"
                           {...register("numero")}
                         />
                         <InputForm
-                          id="complemento"
+                          // npm run dev
                           type="text"
                           placeholder="Complemento"
                           {...register("complemento")}
@@ -138,25 +137,26 @@ export function Checkout() {
                       </div>
                       <div>
                         <InputForm
-                          id="bairro"
+                          // id="bairro"
                           type="text"
                           placeholder="Bairro"
                           {...register("bairro")}
                         />
                         <InputForm
-                          id="cidade"
+                          // id="cidade"
                           type="text"
                           placeholder="Cidade"
                           {...register("cidade")}
                         />
                         <InputForm
-                          id="uf"
+                          // id="uf"
                           type="text"
                           placeholder="UF"
                           {...register("uf")}
                         />
                       </div>
                     </fieldset>
+                    
                   </form>
                 </div>
               </FormContainer>
@@ -207,6 +207,9 @@ export function Checkout() {
           </CheckoutContainer>
         </PainelContainer>
       </>
-    </FormContext.Provider>
+      
+
+   
   );
+  
 }

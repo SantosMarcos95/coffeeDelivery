@@ -8,10 +8,14 @@ import backgroundImg from "../../assets/successImgs/backgroundImg.svg";
 import localImg from "../../assets/successImgs/iconLocal.svg";
 import timerImg from "../../assets/successImgs/iconTimer.svg";
 import { useContext } from "react";
-import { FormContext } from "../checkout";
+import { FormContext } from "../../contexts/formContext";
+
+
+
 
 export function Success() {
-  const formData = useContext(FormContext);
+
+  const {address} = useContext(FormContext)
 
   const timerEntregaMin = 20;
   const timerEntregaMax = 30;
@@ -36,11 +40,11 @@ export function Success() {
               <span>
                 Entrega em{" "}
                 <strong>
-                  Rua {formData.rua}, {formData.numero}, {formData.complemento}
+                  Rua {address.rua},{" "}{address.numero}, {address.complemento}
                 </strong>
               </span>
               <span>
-                {formData.bairro} - {formData.cidade}, {formData.uf}
+                {address.bairro} - {address.cidade}, {address.uf}
               </span>
             </div>
           </div>

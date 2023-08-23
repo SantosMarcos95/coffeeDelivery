@@ -16,7 +16,7 @@ export function Header() {
       <div>
         <MenuContainer>
           <MapPinLine size={24} color="#8047f8" />
-          <p>{/* <GetLocation /> */}</p>
+          <p><GetLocation /></p>
         </MenuContainer>
         <StyledCar>
           <NavLink to="/checkout" title="Cart">

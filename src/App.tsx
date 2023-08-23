@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
 import { createContext, useState } from "react";
 import { CartItem } from "./components/CoffeeCard";
+import { FormProvider } from "./contexts/formContext";
 
 // interface TypeInput {
 //   inputCep: string;
@@ -71,12 +72,15 @@ export function App() {
         updatCartItemQuantity,
       }}
     >
+      <FormProvider>
+
       <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <Router />
         </BrowserRouter>
         <GlobalStyle />
       </ThemeProvider>
+      </FormProvider>
     </CoffeeContext.Provider>
   );
 }
