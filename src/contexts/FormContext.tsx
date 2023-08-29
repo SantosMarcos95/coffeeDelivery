@@ -2,8 +2,6 @@ import { createContext, useState, ReactNode } from "react";
 import { FormData } from "../pages/checkout";
 
 
-
-
 interface FormContextProps {
   children: ReactNode;
 }

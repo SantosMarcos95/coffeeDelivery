@@ -5,23 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
 import { createContext, useState } from "react";
 import { CartItem } from "./components/CoffeeCard";
-import { FormProvider } from "./contexts/formContext";
+import { FormProvider } from "./contexts/FormContext";
 
-// interface TypeInput {
-//   inputCep: string;
-//   inputRua: string;
-//   inputNum: string;
-//   inputCompl: string;
-//   inputBairro: string;
-//   inputCity: string;
-//   inputUf: string;
-//   paymentMethod: string;
-// }
-
-// interface InputValues {
-//   inputValues: TypeInput[];
-//   setInputValues: React.Dispatch<React.SetStateAction<[]>>;
-// }
 
 interface CoffeeContextType {
   cartItems: CartItem[];
@@ -33,13 +18,9 @@ interface CoffeeContextType {
 }
 
 export const CoffeeContext = createContext({} as CoffeeContextType);
-// export const InputContext = createContext({} as InputValues);
 
 export function App() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  // const [inputValues, setInputValues] = useState<InputValues>();
-
-  // console.log(cartItems.length);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]); 
 
   const addToCart = (item: CartItem) => {
     setCartItems((prevItems) => [...prevItems, item]);
@@ -72,15 +53,14 @@ export function App() {
         updatCartItemQuantity,
       }}
     >
-      <FormProvider>
-
+    <FormProvider>
       <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
           <Router />
         </BrowserRouter>
         <GlobalStyle />
       </ThemeProvider>
-      </FormProvider>
+     </FormProvider>
     </CoffeeContext.Provider>
   );
 }

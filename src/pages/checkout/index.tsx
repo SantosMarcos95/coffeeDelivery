@@ -13,7 +13,7 @@ import cc from "../../assets/buttonImgs/cartaoCredito.svg";
 import cd from "../../assets/buttonImgs/cartaoDebito.svg";
 import money from "../../assets/buttonImgs/dinheiro.svg";
 import { CoffeeCardMine } from "../../components/CoffeeCardMine";
-import {  createContext, useContext } from "react";
+import { useContext } from "react";
 import { CoffeeContext } from "../../components/CoffeeCard";
 
 import { useForm } from "react-hook-form";
@@ -22,18 +22,6 @@ import * as zod from "zod";
 import InputForm from "../../components/InputForm";
 import {  useNavigate } from "react-router-dom";
 import { FormContext } from "../../contexts/FormContext";
-
-
-// export type FormData = {
-//   cep: string;
-//   rua: string;
-//   numero: string;
-//   complemento: string;
-//   bairro: string;
-//   cidade: string;
-//   uf: string;
-// };
-
 
 //validação dos formularios
 const confirmeDeliveryFormValidation = zod.object({
@@ -83,17 +71,16 @@ export function Checkout() {
     navigate("/success");
   };
   
-  return (
-
-
-         <>
-        <PainelContainer>
-          <CheckoutContainer>
-            <DeliveryInformationContainer>
-              <h3>Complete seu pedido</h3>
-              <FormContainer>
-                <div>
-                  <form
+  return 
+  (
+    <>
+      <PainelContainer>
+        <CheckoutContainer>
+          <DeliveryInformationContainer>
+            <h3>Complete seu pedido</h3>
+            <FormContainer>
+              <div>
+                <form
                     id="formDelivery"
                     onSubmit={handleSubmit(handleConfirmPedido)}
                   >
@@ -159,9 +146,8 @@ export function Checkout() {
                     
                   </form>
                 </div>
-              </FormContainer>
-
-              <PaymentCointainer>
+            </FormContainer>
+            <PaymentCointainer>
                 <span>
                   <CurrencyDollarSimple size={20} color="#8047f8" />
                   <div>
@@ -177,8 +163,8 @@ export function Checkout() {
                   <ButtonPag description="cartão débito" imagem={cd} />
                   <ButtonPag description="dinheiro" imagem={money} />
                 </div>
-              </PaymentCointainer>
-            </DeliveryInformationContainer>
+            </PaymentCointainer>
+          </DeliveryInformationContainer>
             <MainCoffeContainer>
               <h3>Cafés selecionados</h3>
               <SelectCoffeeContainer>
@@ -204,12 +190,9 @@ export function Checkout() {
                 {/* </NavLink> */}
               </SelectCoffeeContainer>
             </MainCoffeContainer>
-          </CheckoutContainer>
-        </PainelContainer>
-      </>
-      
-
-   
+        </CheckoutContainer>
+      </PainelContainer>
+    </>
   );
   
 }

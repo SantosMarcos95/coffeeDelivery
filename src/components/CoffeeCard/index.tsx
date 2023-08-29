@@ -25,7 +25,7 @@ export interface CartItem extends CoffeeCardProps {
 
 export function CoffeeCard(props: CoffeeCardProps) {
   const { id, types, title, description, price, imagem } = props;
-  const { cartItems, addToCart } = useContext(CoffeeContext);
+  const { addToCart } = useContext(CoffeeContext);
 
   const [quantity, setQuantity] = useState(0);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false); // Estado para habilitar/desabilitar o botão

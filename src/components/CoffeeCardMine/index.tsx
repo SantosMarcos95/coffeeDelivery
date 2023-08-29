@@ -1,6 +1,6 @@
 import { Trash } from "phosphor-react";
 import { CoffeeMineContainer } from "./styles";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CoffeeContext } from "../../App";
 import { CartItem } from "../CoffeeCard";
 
@@ -10,7 +10,7 @@ interface CoffeeCardProps {
 
 export function CoffeeCardMine(props: CoffeeCardProps) {
   const { cartItem } = props;
-  const { cartItems, addToCart, updatCartItemQuantity, handleRemoveClick } =
+  const { updatCartItemQuantity, handleRemoveClick } =
     useContext(CoffeeContext);
   return (
     <CoffeeMineContainer>

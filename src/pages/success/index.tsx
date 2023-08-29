@@ -8,10 +8,7 @@ import backgroundImg from "../../assets/successImgs/backgroundImg.svg";
 import localImg from "../../assets/successImgs/iconLocal.svg";
 import timerImg from "../../assets/successImgs/iconTimer.svg";
 import { useContext } from "react";
-import { FormContext } from "../../contexts/formContext";
-
-
-
+import { FormContext } from "../../contexts/FormContext";
 
 export function Success() {
 
@@ -32,7 +29,6 @@ export function Success() {
         <span className="paragrafyStyle">
           Agora é só aguardar que logo o café chegará até você
         </span>
-
         <div className="painelStyles">
           <div className="enderecoStyle">
             <img src={localImg} alt="" />

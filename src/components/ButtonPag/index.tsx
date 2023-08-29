@@ -6,17 +6,6 @@ interface ButtonPagProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   imagem: string;
 }
 
-// export function ButtonPag(props: ButtonPagProps) {
-//   const { description, imagem } = props;
-//   return (
-//     <ButtonContainer>
-//       <div>
-//         {imagem && <img src={imagem} />}
-//         <p>{description}</p>
-//       </div>
-//     </ButtonContainer>
-//   );
-// }
 export function ButtonPag(props: ButtonPagProps) {
   const { description, imagem } = props;
   const [isSelected, setIsSelected] = useState(false);
