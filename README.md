@@ -44,7 +44,7 @@ Coffee Delivery é um app para gerenciar um carrinho de compras de uma cafeteria
 - Exibir o total de itens no carrinho no Header
 - Exibir o valor total da soma de itens no carrinho multiplicados pelo valor.
 
--[Visite o projeto online](https://github.com/SantosMarcos95/coffeeDelivery)
+-[Visite o projeto online](https://santosmarcos95.github.io/coffeeDelivery/)
 
 ## 🔖 Layout
 
