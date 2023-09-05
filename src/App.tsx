@@ -8,6 +8,7 @@ import { CartItem } from "./components/CoffeeCard";
 import { FormProvider } from "./contexts/FormContext";
 
 
+
 interface CoffeeContextType {
   cartItems: CartItem[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
@@ -55,7 +56,7 @@ export function App() {
     >
     <FormProvider>
       <ThemeProvider theme={defaultTheme}>
-        <BrowserRouter>
+      <BrowserRouter>
           <Router />
         </BrowserRouter>
         <GlobalStyle />

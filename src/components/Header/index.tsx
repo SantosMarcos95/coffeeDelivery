@@ -4,7 +4,6 @@ import { MapPinLine, ShoppingCart } from "phosphor-react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CoffeeContext } from "../CoffeeCard";
-import GetLocation from "../location/Location";
 export function Header() {
   const { amount } = useContext(CoffeeContext);
 
@@ -16,7 +15,7 @@ export function Header() {
       <div>
         <MenuContainer>
           <MapPinLine size={24} color="#8047f8" />
-          <p><GetLocation /></p>
+          <p>Obtendo localização...</p>
         </MenuContainer>
         <StyledCar>
           <NavLink to="/checkout" title="Cart">

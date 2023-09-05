@@ -71,9 +71,8 @@ export function Checkout() {
     navigate("/success");
   };
   
-  return 
-  (
-    <>
+  return (
+     <>
       <PainelContainer>
         <CheckoutContainer>
           <DeliveryInformationContainer>
